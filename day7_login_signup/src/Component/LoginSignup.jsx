@@ -17,7 +17,7 @@ function LoginSignup() {
             email,
             password
         }
-         
+         setArr([...arr,obj])
         alert("Signup Successfull")
         setState(0)
     }
