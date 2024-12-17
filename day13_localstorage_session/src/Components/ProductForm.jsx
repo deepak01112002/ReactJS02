@@ -1,17 +1,19 @@
 import React,  {useEffect, useState } from 'react'
+import { v4 } from 'uuid';
 import ProductList from './ProductList'
 
 function ProductForm() {
     const [product,setProduct] = useState({
+        id : v4(),
         title : "",
         price : "",
         des : "",
         image : ""
     })
-    const [arr,setArr] = useState(JSON.parse(localStorage.getItem("data")) || [])
+    const [arr,setArr] = useState(JSON.parse(sessionStorage.getItem("data")) || [])
 
     useEffect(()=>{
-        localStorage.setItem("data", JSON.stringify(arr))
+        sessionStorage.setItem("data", JSON.stringify(arr))
     },[arr])
 
     const handleInputChange = (e)=>{
@@ -20,11 +22,11 @@ function ProductForm() {
     }
     const handlesubmit = (e)=>{
         e.preventDefault()
-        setArr([...arr,product])
-
-   
-        
-
+        let obj = {
+            ...product,
+            id : v4()
+        }
+        setArr([...arr,obj])
         setProduct({
             title : "",
             price : "",
@@ -32,7 +34,17 @@ function ProductForm() {
             image : ""
         })
     }
-    console.log(arr)
+    const handleDelete = (deleteid) =>{
+        let a = arr.filter((el)=>{
+           if(el.id != deleteid){
+            return el;
+           }
+        })
+        setArr(a)
+     }
+     const handleEdit = (Editid)=>{
+        console.log(Editid)
+     }
   return (
     <div>
         <form action="" onSubmit={handlesubmit}>
@@ -42,7 +54,7 @@ function ProductForm() {
              <input type="text" placeholder='Image URL' value={product.image} name='image' onChange={handleInputChange}/>
              <input type="submit" />
         </form>
-        <ProductList arr={arr}/>
+        <ProductList arr={arr} handleDelete={handleDelete} handleEdit={handleEdit}/>
     </div>
   )
 }
