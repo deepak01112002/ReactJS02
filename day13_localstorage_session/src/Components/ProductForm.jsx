@@ -10,10 +10,11 @@ function ProductForm() {
         des : "",
         image : ""
     })
-    const [arr,setArr] = useState(JSON.parse(sessionStorage.getItem("data")) || [])
+    const [arr,setArr] = useState(JSON.parse(localStorage.getItem("data")) || [])
+    const [edit,setEdit] = useState("")
 
     useEffect(()=>{
-        sessionStorage.setItem("data", JSON.stringify(arr))
+        localStorage.setItem("data", JSON.stringify(arr))
     },[arr])
 
     const handleInputChange = (e)=>{
@@ -22,6 +23,7 @@ function ProductForm() {
     }
     const handlesubmit = (e)=>{
         e.preventDefault()
+        if(edit == ""){
         let obj = {
             ...product,
             id : v4()
@@ -33,6 +35,23 @@ function ProductForm() {
             des : "",
             image : ""
         })
+     }else {
+        let a = arr.map((el)=>{
+            if(el.id == edit){
+                return {...el,...product}
+            }else{
+                return el;
+            }
+         })
+         setArr(a)
+         setEdit("")
+         setProduct({
+            title : "",
+            price : "",
+            des : "",
+            image : ""
+        })
+     }
     }
     const handleDelete = (deleteid) =>{
         let a = arr.filter((el)=>{
@@ -43,7 +62,30 @@ function ProductForm() {
         setArr(a)
      }
      const handleEdit = (Editid)=>{
-        console.log(Editid)
+        setEdit(Editid)
+        arr.forEach((el)=>{
+            if(el.id == Editid){
+                setProduct({...product,...el})
+            }
+        })
+         
+     }
+     const EditData = ()=>{
+         let a = arr.map((el)=>{
+            if(el.id == edit){
+                return {...el,...product}
+            }else{
+                return el;
+            }
+         })
+         setArr(a)
+         setEdit("")
+         setProduct({
+            title : "",
+            price : "",
+            des : "",
+            image : ""
+        })
      }
   return (
     <div>
@@ -51,8 +93,10 @@ function ProductForm() {
              <input type="text" value={product.title} placeholder='Title' name='title' onChange={handleInputChange}/>
              <input type="text" placeholder='Price' value={product.price} name='price' onChange={handleInputChange}/>
              <input type="text" placeholder='Description' value={product.des} name='des' onChange={handleInputChange}/>
-             <input type="text" placeholder='Image URL' value={product.image} name='image' onChange={handleInputChange}/>
-             <input type="submit" />
+             <input type="text" placeholder='Image URL' value={product.image} name='image' onChange={handleInputChange}/><br />
+             {/* {edit == "" ? "" : <input type='button' value="Edit" onClick={EditData}/>} */}
+             <input type="submit" value={edit == "" ? "submit" : "Edit"} />
+             
         </form>
         <ProductList arr={arr} handleDelete={handleDelete} handleEdit={handleEdit}/>
     </div>
