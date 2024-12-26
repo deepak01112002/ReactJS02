@@ -19,8 +19,8 @@ function Product() {
     <div>
        {
         arr.map((el)=>{
-          return <Link to={`/product/${el.id}`}>
-          <div key={el.id}>
+          return <Link key={el.id} to={`/product/${el.id}`}>
+          <div >
                <h1>{el.name}</h1>
                <h2>{el.email}</h2>
 
