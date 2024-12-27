@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
@@ -7,6 +7,8 @@ function Login() {
     password : ''
  })
  const navigate = useNavigate()
+
+ 
 
  const handleInputChange = (e)=>{
      const {name,value} = e.target
@@ -21,6 +23,7 @@ function Login() {
      if(Res.length > 0){   
         if(Res[0].password == form.password){
             alert("login Successfull")
+            localStorage.setItem("isLogIn", true)
             navigate("/")
         }else{
             alert("Wrong Password")
