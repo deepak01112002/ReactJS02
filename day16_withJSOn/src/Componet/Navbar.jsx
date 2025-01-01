@@ -7,6 +7,7 @@ function Navbar() {
         <Link to={"/signup"}>Signup</Link><br />
         <Link to={"/login"}>Login</Link><br />
         <Link to={"/product"}>Product</Link><br />
+        <Link to={"/allProduct"}>Product List</Link>
     </div>
   )
 }

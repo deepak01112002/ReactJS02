@@ -7,6 +7,7 @@ import Signup from '../Pages/Signup'
 import ProductForm from '../Pages/ProductForm'
 import PrivateRoute from '../Componet/PrivateRoute'
 import ProductList from '../Pages/ProductList'
+import EditProduct from '../Pages/EditProduct'
 function MainRouter() {
   return (
     <div>
@@ -23,7 +24,8 @@ function MainRouter() {
                 <ProductForm/>
               </PrivateRoute> 
                 }></Route>
-                <Route path='allProduct' element={<ProductList/>}></Route>
+                <Route path='/allProduct' element={<ProductList/>}></Route>
+                <Route path='/editProduct' element={<EditProduct/>}></Route>
         </Routes>
     </div>
   )
