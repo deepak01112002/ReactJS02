@@ -20,12 +20,12 @@ function MainRouter() {
               <Route path='/login' element={<Login/>}></Route>
               <Route path='/signup' element={<Signup/>}></Route>
               <Route path='/product' element={
-              <PrivateRoute>
+              // <PrivateRoute>
                 <ProductForm/>
-              </PrivateRoute> 
+              // </PrivateRoute> 
                 }></Route>
                 <Route path='/allProduct' element={<ProductList/>}></Route>
-                <Route path='/editProduct' element={<EditProduct/>}></Route>
+                <Route path='/edit/:id' element={<EditProduct/>}></Route>
         </Routes>
     </div>
   )

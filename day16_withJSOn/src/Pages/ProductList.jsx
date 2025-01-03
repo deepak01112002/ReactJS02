@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EditProduct from './EditProduct'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ProductList() {
     const [arr,setarr] = useState([])
@@ -46,7 +46,7 @@ function ProductList() {
              <div key={el.id}>
                  <h1>{el.Title}</h1>
                  <img src={el.ImageURL} alt={el.Title} /><br />
-                 <button onClick={()=>handleEdit(el.id)} >Edit</button>
+                 <Link to={`/edit/${el.id}`}><button>Edit</button></Link>
 
                  {/* {bool == true ? <EditProduct/> : ""} */}
                  <button onClick={()=>{handleDelete(el.id)}}>Delete</button>

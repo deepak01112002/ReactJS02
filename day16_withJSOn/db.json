@@ -13,21 +13,5 @@
       "password": "sadf"
     }
   ],
-  "products": [
-    {
-      "id": "c772",
-      "Title": "sdafsf",
-      "ImageURL": "asfasf"
-    },
-    {
-      "id": "fcb5",
-      "Title": "asdfasf",
-      "ImageURL": "asdfasf"
-    },
-    {
-      "id": "62ba",
-      "Title": "asdfasfasfsadf",
-      "ImageURL": "asdfasfsdaf"
-    }
-  ]
+  "products": []
 }
