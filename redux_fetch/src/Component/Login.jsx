@@ -15,7 +15,7 @@ function Login() {
   };
   const navigate = useNavigate();
 
-  const data = useSelector((state) => state);
+  const data = useSelector((state) => state.loginReducer);
   console.log(data);
   
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ function Login() {
         
         if(Res.data[0].password == state.password){
             dispatch({ type: "SUCCESS" ,payload : Res.data[0].username});
+
             navigate("/")
         }else{
             alert("Wrong Password")
