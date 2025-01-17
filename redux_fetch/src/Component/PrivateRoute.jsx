@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 function PrivateRoute({children}) {
-    const data = useSelector(state => state)
+    const data = useSelector(state => state.loginReducer)
     console.log(data)
   return (
      <div>

@@ -1,16 +1,16 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
+import { fetchData } from '../Redux/productReducer/action'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Product() {
+   const dispatch = useDispatch()
+   const data = useSelector(store=>store.productReducer)
+   
   useEffect(()=>{
      
-     axios.get(`http://localhost:3000/products`)
-     .then((res)=>{
-        dispatch({type : "SUCCESS", payload : res.data})
-     })
-     .catch((err)=>{
-      dispatch({type : "ERROR"})
-     })
+    fetchData(dispatch)
+    
   },[])
   return (
     <div>Product</div>
