@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore"
 import { db } from "../Firebase/Fire"
 
 const DataCollection = collection(db,"products")
@@ -25,5 +25,14 @@ export const deleteData = (dispatch) =>async(id)=>{
       let d = doc(db,"products",id)
       await deleteDoc(d)
       dispatch({type : "SUCCESS"})
-      getData()
+      getData(dispatch)
+}
+
+
+export const updateData = (dispatch) =>async(id,obj)=>{
+    dispatch({type : "LOADING"})
+    let d = doc(db,"products",id);
+    await updateDoc(d,obj);
+    dispatch({type : "SUCCESS"})
+    getData(dispatch)
 }

@@ -4,14 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Form from './Components/Form'
 import Data from './Components/Data'
+import Navbar from './Routes/Navbar'
+import MainRoutes from './Routes/MainRoutes'
 
 function App() {
   
 
   return (
     <>
-      <Form/>
-      <Data />
+     <Navbar/><br /><br />
+     <MainRoutes/>
     </>
   )
 }
